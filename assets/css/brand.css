@@ -81,3 +81,41 @@
   .hero-brand .stats div{background:none;border-color:var(--line)}
   .foot{display:none}
 }
+
+/* 검색 결과 — 매뉴얼별 묶음 */
+.sr .in{max-width:900px}
+.sum{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px;
+  box-shadow:var(--shadow)}
+.sum-h{font-size:15px;color:var(--ink);margin-bottom:12px}
+.sum-h mark{background:#fff3b8;border-radius:4px;padding:0 4px;font-weight:800}
+.sum-h b{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;
+  padding:5px 11px 5px 6px;font:inherit;font-size:13px;font-weight:600;color:var(--body);cursor:pointer}
+.chip[data-f=""]{padding-left:12px}
+.chip .cn{font-size:11px;font-weight:800;color:#fff;background:var(--c,#8795a1);border-radius:999px;padding:1px 7px;letter-spacing:-.02em}
+.chip em{font-style:normal;font-weight:800;color:var(--muted);font-size:12px}
+.chip:hover{border-color:var(--c,var(--accent))}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip.on em{color:var(--cyan)}
+.grp{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:12px;
+  margin-bottom:12px;overflow:hidden}
+.gh{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--line2);cursor:pointer;text-decoration:none}
+.gh:hover{background:#fafbfc}
+.gn{font-size:12px;font-weight:800;color:#fff;background:var(--c);border-radius:6px;padding:2px 7px}
+.gt{font-weight:800;color:var(--ink);font-size:15.5px;letter-spacing:-.02em;flex:1;min-width:0}
+.gc{font-size:12.5px;font-weight:700;color:var(--c)}
+.gi{display:block;padding:10px 16px;border-top:1px solid var(--line2);text-decoration:none;cursor:pointer}
+.gl .gi:first-child{border-top:0}
+.gi:hover{background:#f7f9fb}
+.gi.more{display:none}
+.grp.open .gi.more{display:block}
+.grp.open .gmore{display:none}
+.gs{font-size:11.5px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:6px}
+.gcode{font-size:10.5px;font-weight:800;color:#fff;background:var(--c);border-radius:5px;padding:0 6px;letter-spacing:.03em}
+.gi .ht{font-size:14.5px;font-weight:700;color:var(--ink);margin:1px 0 2px}
+.gi .hs{font-size:13px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.55}
+.gi mark{background:#fff3b8;color:inherit;border-radius:3px;padding:0 1px}
+.gmore{display:block;width:100%;border:0;border-top:1px dashed var(--line);background:#fafbfc;padding:9px;font:inherit;
+  font-size:13px;font-weight:700;color:var(--c);cursor:pointer}
+.gmore:hover{background:#f1f4f7}

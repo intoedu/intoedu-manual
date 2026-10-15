@@ -182,7 +182,8 @@ def build_html():
 
     write(p('assets', 'css', 'style.css'), css.strip() + '\n')
     write(p('assets', 'js', 'search-index.js'), idx_js.strip() + '\n')
-    write(p('assets', 'js', 'app.js'), app_js.strip() + '\n')
+    # app.js(화면 동작·검색 화면)는 저장소에서 직접 고쳐 쓰는 파일이라 원본으로 덮어쓰지 않는다
+    app_js = open(p('assets', 'js', 'app.js'), encoding='utf-8').read()
     brand_css = open(p('assets', 'css', 'brand.css'), encoding='utf-8').read()
 
     head = HEAD_EXTRA.format(desc=desc, v1=short_hash(css), v2=short_hash(brand_css))

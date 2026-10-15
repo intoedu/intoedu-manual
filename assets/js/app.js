@@ -118,23 +118,69 @@
       it._s = s;
     });
     hits.sort(function (a, b) { return a._s - b._s; });
-    hits = hits.slice(0, 80);
     sr.classList.add('on');
     if (!hits.length) {
       srIn.innerHTML = '<div class="empty"><p><b>' + esc(q) + '</b>에 맞는 내용을 찾지 못했습니다.</p>'
         + '<p class="muted">다른 낱말로 찾아보시거나, 질문 수집 시트에 적어 주세요.</p></div>';
       return;
     }
-    var html = '<div class="cnt">' + hits.length + '건' + (hits.length === 80 ? ' 이상' : '') + ' 찾았습니다</div>';
-    hits.forEach(function (it) {
-      html += '<a class="hit" style="--c:' + it.c + '" data-go="' + it.m + '" data-anchor="' + it.a + '">'
-        + '<div class="hm">' + esc(it.ml) + (it.code ? ' · ' + esc(it.code) : '') + '</div>'
-        + '<div class="ht">' + mark(it.t, terms) + '</div>'
-        + (it.b ? '<div class="hs">' + mark(snippet(it.b, low), terms) + '</div>' : '')
-        + '</a>';
+
+    /* 매뉴얼별로 묶기 — 어느 매뉴얼에 있는지 먼저, 그 안의 내용은 아래에 */
+    var groups = {};
+    hits.forEach(function (it) { (groups[it.m] = groups[it.m] || []).push(it); });
+    var order = MANUALS.filter(function (m) { return groups[m.id]; });
+    var html = '<div class="sum"><div class="sum-h"><mark>' + esc(q) + '</mark> — 매뉴얼 <b>' + order.length
+      + '곳</b>에서 <b>' + hits.length + '건</b>을 찾았습니다</div><div class="chips">'
+      + '<button type="button" class="chip on" data-f="">전체 <em>' + hits.length + '</em></button>';
+    order.forEach(function (m) {
+      html += '<button type="button" class="chip" data-f="' + m.id + '" style="--c:' + m.c + '">'
+        + '<span class="cn">' + esc(m.n) + '</span>' + esc(m.name) + ' <em>' + groups[m.id].length + '</em></button>';
+    });
+    html += '</div></div>';
+    order.forEach(function (m) {
+      var list = groups[m.id];
+      html += '<section class="grp" data-m="' + m.id + '" style="--c:' + m.c + '">'
+        + '<a class="gh" data-go="' + m.id + '"><span class="gn">' + esc(m.n) + '</span><span class="gt">' + esc(m.name)
+        + '</span><span class="gc">' + list.length + '건</span></a><div class="gl">';
+      list.forEach(function (it, i) {
+        var sec = section(it, m);
+        html += '<a class="gi' + (i >= SHOW ? ' more' : '') + '" data-go="' + it.m + '" data-anchor="' + it.a + '">'
+          + '<div class="gs">' + (it.code ? '<span class="gcode">' + esc(it.code) + '</span>' : '') + esc(sec) + '</div>'
+          + '<div class="ht">' + mark(it.t, terms) + '</div>'
+          + (it.b ? '<div class="hs">' + mark(snippet(it.b, low), terms) + '</div>' : '')
+          + '</a>';
+      });
+      html += '</div>' + (list.length > SHOW ? '<button type="button" class="gmore" data-more>나머지 '
+        + (list.length - SHOW) + '건 더 보기</button>' : '') + '</section>';
     });
     srIn.innerHTML = html;
+    sr.scrollTop = 0;
   }
+  var SHOW = 4;
+  var MANUALS = $$('.side .nav-i[data-go]').filter(function (a) { return a.dataset.go !== 'home'; }).map(function (a) {
+    return { id: a.dataset.go, n: $('.n', a).textContent, name: a.lastElementChild.textContent,
+      c: a.style.getPropertyValue('--c') };
+  });
+  function section(it, m) {
+    var pre = (m.n === '부록' ? '부록 · ' : m.n + ' ') + m.name;
+    var rest = it.ml.indexOf(pre) === 0 ? it.ml.slice(pre.length).replace(/^\s*·\s*/, '') : it.ml;
+    return rest || (it.code ? '상황 카드' : '본문');
+  }
+  srIn.addEventListener('click', function (e) {
+    var chip = e.target.closest('.chip');
+    if (chip) {
+      var f = chip.dataset.f;
+      $$('.chip', srIn).forEach(function (c) { c.classList.toggle('on', c === chip); });
+      $$('.grp', srIn).forEach(function (g) {
+        g.hidden = !!f && g.dataset.m !== f;
+        g.classList.toggle('open', !!f);
+      });
+      sr.scrollTop = 0;
+      return;
+    }
+    var more = e.target.closest('[data-more]');
+    if (more) { more.closest('.grp').classList.add('open'); }
+  });
   box.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(run, 110); });
   box.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { box.value = ''; closeSearch(); box.blur(); }
