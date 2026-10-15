@@ -1,0 +1,81 @@
+/* ── 인투유학 매뉴얼 브랜드 (로고: 남색 #05205B · 하늘색 #17B8F6) ──
+   style.css(매뉴얼 원본 스타일) 위에 덮어씁니다. */
+:root{
+  --navy:#05205B; --navy2:#0A2C74; --cyan:#17B8F6;
+  --accent:#0B78B8; --accent-soft:#e3f4fd;
+  --sans:"Pretendard Variable","Pretendard","Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+::selection{background:#bfe9fd}
+
+/* 상단 바 — 높이를 58px로 고정하고 사이드·검색 화면 위치를 여기에 맞춤 */
+.top{background:var(--navy);border-bottom:0;backdrop-filter:none;-webkit-backdrop-filter:none;
+  height:58px;padding:0 20px;box-shadow:0 6px 22px -14px rgba(5,32,91,.9)}
+.side{top:58px;height:calc(100vh - 58px)}
+.sr{inset:58px 0 0}
+.brand{color:#fff;gap:9px}
+.brand .bmark{width:34px;height:34px;border-radius:0;background:none;display:block;object-fit:contain}
+.brand .btxt{font-size:17px;font-weight:900;letter-spacing:-.035em;line-height:1.15}
+.brand .btxt em{font-style:normal;color:var(--cyan);margin-left:.14em}
+.brand small{color:rgba(255,255,255,.5);font-size:9.5px;letter-spacing:.12em;margin-top:2px}
+.search input{line-height:1.4;background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.14);color:#fff}
+.search input::placeholder{color:rgba(255,255,255,.5)}
+.search input:focus{background:#fff;color:var(--ink);border-color:var(--cyan);box-shadow:0 0 0 3px rgba(23,184,246,.32)}
+.search svg{stroke:rgba(255,255,255,.6);z-index:1}
+.search:focus-within svg{stroke:var(--muted)}
+.search kbd{background:transparent;color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.22)}
+.search:focus-within kbd{display:none}
+.top .tbtn{background:transparent;color:#fff;border-color:rgba(255,255,255,.25)}
+.top .tbtn:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* 사이드 */
+.nav-i.on{box-shadow:0 1px 2px rgba(5,32,91,.06),0 8px 22px -12px rgba(5,32,91,.3)}
+.side h4{color:#8a9ab3}
+
+/* 첫 화면 — 로고 배너 */
+.hero-brand{position:relative;overflow:hidden;border-radius:18px;padding:42px 40px 34px;margin-bottom:34px;
+  background:
+    radial-gradient(620px 300px at 100% 0%,rgba(23,184,246,.22),transparent 70%),
+    radial-gradient(500px 260px at 0% 100%,rgba(23,184,246,.10),transparent 70%),
+    linear-gradient(160deg,var(--navy2),var(--navy) 60%);
+  box-shadow:0 18px 40px -24px rgba(5,32,91,.75)}
+.hero-brand::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:22px 22px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 35%,#000);mask-image:linear-gradient(90deg,transparent 35%,#000)}
+.hero-brand>*{position:relative;z-index:1}
+.hero-brand h1.hero-logo{margin:0 0 22px;line-height:0}
+.hero-brand h1.hero-logo img{width:min(470px,100%);height:auto}
+.hero-brand .eyebrow{color:var(--cyan);letter-spacing:.16em}
+.hero-brand p{color:rgba(255,255,255,.8);margin:8px 0 0}
+.hero-brand .stats{margin-top:24px}
+.hero-brand .stats div{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.hero-brand .stats b{color:#fff}
+.hero-brand .stats span{color:rgba(255,255,255,.62)}
+.print-only{display:none}
+
+/* 첫 화면 바닥글 */
+.foot{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:56px;
+  padding:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);font-weight:600}
+.foot img{width:22px;height:22px;background:var(--navy);border-radius:6px;padding:2px}
+.foot .sep{color:var(--line)}
+
+@media(max-width:900px){
+  .hero-brand{padding:28px 20px 24px;border-radius:14px}
+  .hero-brand h1.hero-logo{margin-bottom:16px}
+  .top{padding:0 14px;gap:10px}
+  .side{top:58px}
+  .scrim{inset:58px 0 0}
+}
+@media(max-width:480px){
+  .top #print{display:none}
+}
+@media print{
+  .hero-brand{background:none;box-shadow:none;padding:0;border-radius:0}
+  .hero-brand::after,.hero-brand h1.hero-logo img{display:none}
+  .print-only{display:block;font-size:26pt;line-height:1.2;color:var(--ink)}
+  .hero-brand .eyebrow{color:var(--muted)}
+  .hero-brand p,.hero-brand .stats b{color:var(--ink)}
+  .hero-brand .stats span{color:var(--muted)}
+  .hero-brand .stats div{background:none;border-color:var(--line)}
+  .foot{display:none}
+}

@@ -1,0 +1,12 @@
+{
+  "name": "인투유학 매뉴얼",
+  "short_name": "인투유학 매뉴얼",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f8fa",
+  "theme_color": "#05205B",
+  "icons": [
+    { "src": "assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
