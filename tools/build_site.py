@@ -176,7 +176,8 @@ def build_html():
 
     footer = ('<footer class="foot"><img src="assets/img/logo-mark.png" alt="" width="22" height="22">'
               '<span>인투유학 매뉴얼 · INTO GLOBAL EDUCATION</span><span class="sep">|</span>'
-              '<span>내부용 — 외부 공유 금지</span></footer>')
+              '<span>내부용 — 외부 공유 금지</span><span class="sep">|</span>'
+              '<a href="/__logout">잠그기</a></footer>')
     body = body.replace('</article><article class="pane" id="m00"', footer + '</article><article class="pane" id="m00"', 1)
 
     write(p('assets', 'css', 'style.css'), css.strip() + '\n')
