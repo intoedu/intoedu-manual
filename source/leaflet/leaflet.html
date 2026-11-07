@@ -21,7 +21,7 @@
 
 :root{
   --b:3mm;                         /* 재단 여유 (사무용 인쇄는 0) */
-  --navy:#05205B; --navy2:#0A2C74; --cyan:#17B8F6; --accent:#0B78B8;
+  --navy:#05205B; --navy2:#0A2C74; --cyan:#0BB7D8; --accent:#0B78B8;
   --soft:#EAF6FD; --soft2:#F4F9FD; --ink:#0D1B36; --body:#36435C; --muted:#66748C; --line:#D5E0EB;
   --pad:8.5mm;                     /* 접는 선·재단선에서 글자까지 안전 여백 */
 }
@@ -72,15 +72,15 @@ h2 em{font-style:normal;color:var(--accent)}
 
 /* ── 앞표지 ───────────────────────────── */
 .cover{background:
-   radial-gradient(90mm 70mm at 100% 0%,rgba(23,184,246,.28),transparent 70%),
-   radial-gradient(80mm 60mm at 0% 100%,rgba(23,184,246,.14),transparent 70%),
+   radial-gradient(90mm 70mm at 100% 0%,rgba(11,183,216,.28),transparent 70%),
+   radial-gradient(80mm 60mm at 0% 100%,rgba(11,183,216,.14),transparent 70%),
    linear-gradient(165deg,#0B2F7A 0%,var(--navy) 55%,#031746 100%);color:#fff}
 .cover .in{inset:calc(var(--b) + 13mm) calc(var(--b) + var(--pad)) calc(var(--b) + 10mm) var(--pad)}
-.cv-logo{width:47mm;height:auto;display:block}
-.cv-en{font-size:6.2pt;font-weight:700;letter-spacing:.32em;color:rgba(255,255,255,.62);margin-top:2.6mm}
-.cv-mid{margin-top:19mm}
+.cv-logo{width:80mm;max-width:100%;height:auto;display:block;margin-left:-1.2mm}
+.cv-en{font-size:6.2pt;font-weight:700;letter-spacing:.32em;color:rgba(255,255,255,.62);margin-top:3.4mm}
+.cv-mid{margin-top:17mm}
 .cv-eyebrow{font-size:6.6pt;font-weight:800;letter-spacing:.22em;color:var(--cyan)}
-.cv-title{font-size:30pt;font-weight:900;line-height:1.16;letter-spacing:-.045em;color:#fff;margin-top:3.2mm}
+.cv-title{font-size:25pt;font-weight:900;line-height:1.2;letter-spacing:-.045em;color:#fff;margin-top:3.2mm}
 .cv-title em{font-style:normal;color:var(--cyan)}
 .cv-sub{font-size:9pt;line-height:1.6;color:rgba(255,255,255,.86);margin-top:5mm;font-weight:500}
 .cv-quote{font-size:7.2pt;font-weight:600;color:rgba(255,255,255,.58);margin-top:2.2mm;letter-spacing:.01em}
@@ -128,7 +128,7 @@ h2 em{font-style:normal;color:var(--accent)}
 .help li svg{color:var(--accent);width:3.9mm;height:3.9mm}
 .help small{font-size:6.3pt;color:var(--muted)}
 .contact{margin-top:auto;background:var(--navy);border-radius:3mm;padding:4.2mm 4.2mm 4mm;color:#fff;display:flex;gap:3.5mm;align-items:flex-end;
-  background-image:radial-gradient(40mm 30mm at 100% 0%,rgba(23,184,246,.28),transparent 70%)}
+  background-image:radial-gradient(40mm 30mm at 100% 0%,rgba(11,183,216,.28),transparent 70%)}
 .ct-l{flex:1;min-width:0}
 .ct-h{font-size:6.6pt;font-weight:800;letter-spacing:.2em;color:var(--cyan)}
 .ct-tel{font-size:15.5pt;font-weight:900;letter-spacing:-.01em;line-height:1.15;margin-top:1mm;color:#fff}
@@ -141,8 +141,8 @@ h2 em{font-style:normal;color:var(--accent)}
 .ct-qr img{display:block;width:100%;height:auto}
 .ct-qr span{display:block;font-size:5.5pt;font-weight:600;color:rgba(255,255,255,.72);margin-top:1.2mm;line-height:1.3}
 .back-foot{margin-top:3.6mm}
-.back-sign{display:flex;align-items:center;justify-content:space-between;margin-top:2.6mm}
-.back-sign img{height:5.6mm;width:auto}
+.back-sign{display:flex;align-items:flex-end;justify-content:space-between;margin-top:3mm}
+.back-sign img{height:9mm;width:auto}
 .back-sign span{font-size:5.8pt;font-weight:700;letter-spacing:.18em;color:var(--muted)}
 
 /* ── 안쪽: 소개 ───────────────────────────── */
@@ -277,7 +277,7 @@ h2 em{font-style:normal;color:var(--accent)}
     <div class="contact">
       <div class="ct-l">
         <p class="ct-h">상담 문의</p>
-        <p class="ct-tel">031-334-2414</p>
+        <p class="ct-tel">031-674-0316</p>
         <dl class="ct-dl">
           <dt>카카오톡</dt><dd>ID historymaker911</dd>
           <dt>이메일</dt><dd>intoedu0309@gmail.com</dd>
@@ -299,8 +299,8 @@ h2 em{font-style:normal;color:var(--accent)}
       <p class="cv-en">INTO GLOBAL EDUCATION</p>
       <div class="cv-mid">
         <p class="cv-eyebrow">MORE THAN STUDY ABROAD</p>
-        <h1 class="cv-title">세계의 장벽을<br><em>낮추다</em></h1>
-        <p class="cv-sub">캠프에서 조기유학, 대학 진학까지<br>현지에서 직접 관리하는 해외 교육</p>
+        <h1 class="cv-title">캠프에서<br><em>대학 진학까지</em></h1>
+        <p class="cv-sub">미국 · 필리핀 · 말레이시아 · 태국<br>현지 팀이 직접 관리하는 해외 교육</p>
         <p class="cv-quote">Explore your global future</p>
       </div>
     </div>
@@ -314,7 +314,7 @@ h2 em{font-style:normal;color:var(--accent)}
     </div>
     <div class="cv-foot">
       <ul class="cv-tags"><li>영어 캠프</li><li>스쿨링 캠프</li><li>조기유학</li><li>대학 유학</li></ul>
-      <p class="cv-call">상담 문의 <b>031-334-2414</b></p>
+      <p class="cv-call">상담 문의 <b>031-674-0316</b></p>
     </div>
   </section>
 </div>
@@ -325,7 +325,7 @@ h2 em{font-style:normal;color:var(--accent)}
   <!-- 소개 -->
   <section class="panel about"><div class="in">
     <p class="eyebrow">ABOUT</p>
-    <h2>캠프에서 대학까지,<br><em>관리형</em> 해외 교육</h2>
+    <h2>인투유학은<br><em>이런 회사입니다</em></h2>
     <p class="lead">인투유학은 미국·필리핀·말레이시아 현지 유학센터와 국내 학원을 연결해, 학생들의 캠프와 유학을 <b>관리형</b>으로 운영하는 회사입니다.</p>
     <div class="netw">
       <p class="sec-h">현지 네트워크</p>
