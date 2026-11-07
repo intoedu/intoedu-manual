@@ -37,6 +37,9 @@
 | `source/manual.html` | 매뉴얼 원본(한 장짜리 HTML) |
 | `source/logo-banner.webp` | 로고 원본 |
 | `tools/build_site.py` | 원본 → 홈페이지 변환 스크립트 |
+| `source/leaflet/` | 3단 리플렛 원본(HTML·글꼴·로고·QR·지도) |
+| `tools/build_leaflet.js` | 리플렛 원본 → `leaflet/` PDF·미리보기 생성 |
+| `leaflet/` | 3단 리플렛 완성 파일 (인쇄용·사무용 PDF, 미리보기) |
 | `middleware.js` | 비밀번호 잠금 (Vercel) |
 | `vercel.json`, `.vercelignore` | 배포 설정 (원본·도구 폴더는 배포에서 제외) |
 
@@ -49,6 +52,27 @@
 3. `index.html`과 `assets/`가 다시 만들어집니다. 확인 후 커밋합니다.
 
 로고·색은 `assets/css/brand.css`에서, 로고 그림은 `source/logo-banner.webp`를 바꾼 뒤 다시 빌드하면 됩니다.
+
+## 인투유학 3단 리플렛
+학부모·학생에게 나눠 주는 공식 3단 리플렛입니다. 매뉴얼(01 브랜드·03 캠프·04 유학·07 홍보 표현 규칙·11 자료 제작 기준)의 내용으로 만들었습니다.
+
+| 파일 (`leaflet/`) | 용도 |
+|---|---|
+| `인투유학_3단리플렛_2026_v1_인쇄용_CMYK.pdf` | **인쇄소에 넘기는 파일** — 303×216mm(재단 여유 3mm 포함), 완성 297×210mm, 2쪽(1쪽 바깥면 · 2쪽 안쪽면) |
+| `인투유학_3단리플렛_2026_v1_인쇄용_RGB.pdf` | 같은 판형의 RGB 원본 (RGB 파일을 요청하는 인쇄소·디지털 인쇄용) |
+| `인투유학_3단리플렛_2026_v1_사무용_A4.pdf` | 사무실 프린터 양면 인쇄용 (A4 가로 — 양면 설정은 「짧은 쪽으로 넘기기」) |
+| `…_바깥면.png`, `…_안쪽면.png` | 카톡·메일로 보여 줄 미리보기 |
+| `…_접지선확인.png` | 재단선(점선)과 접는 선(실선) 검수용 |
+
+- **판형·접지:** A4 가로 3단 **말아접기(롤 접지)**. 바깥면은 왼쪽부터 날개 97 · 뒷표지 100 · 앞표지 100mm, 안쪽면은 소개 100 · 캠프 100 · 유학 97mm입니다. 인쇄소에 "A4 3단 말아접기, 안쪽으로 접혀 들어가는 면 97mm"라고 알려 주세요.
+- **들어간 연락처:** 대표 전화 031-334-2414 · 카카오톡 ID historymaker911 · intoedu0309@gmail.com · intoabroad.com(QR). 사업장 주소는 이전 확정 전이라 넣지 않았습니다.
+- **넣지 않은 것:** 금액·출발 날짜·시즌별 정원. 시즌마다 바뀌고 자료끼리 다른 곳이 있어(부록 「자료 불일치 목록」) 오래 쓰는 공식 리플렛에는 넣지 않고, "시즌별 일정과 참가비는 상담 때 최신 안내 자료로" 문구로 대신합니다. 시즌 금액은 포스터·안내문으로 따로 만듭니다(11번).
+- **고치는 법:** `source/leaflet/leaflet.html`의 글을 고친 뒤 아래를 실행합니다. 판을 바꾸면 `tools/build_leaflet.js`의 `NAME` 끝 번호(v1 → v2)를 올립니다.
+  ```bash
+  node tools/build_leaflet.js
+  ```
+  필요한 것: Node 18+, Playwright(Chromium). 선택: Ghostscript(`gs`, CMYK 변환), Python `pypdf`(재단 상자 지정). 없으면 해당 단계만 건너뜁니다.
+- 글꼴은 Pretendard(SIL OFL, `source/leaflet/fonts/`), 아이콘은 Lucide(ISC)입니다. 로고는 `source/logo-banner.webp`에서 아이콘과 "인투유학" 글자만 떼어 벡터(SVG)로 바꾼 것입니다.
 
 ## 미리 보기
 ```bash

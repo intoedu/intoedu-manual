@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>인투유학 3단 리플렛</title>
+<!--
+  인투유학 공식 3단 리플렛 (A4 가로 3단 말아접기)
+  - 완성(재단) 297 × 210 mm / 작업(재단 여유 3mm 포함) 303 × 216 mm
+  - 1쪽 = 바깥면 [접어 넣는 날개 97 | 뒷표지 100 | 앞표지 100]
+  - 2쪽 = 안쪽면 [소개 100 | 캠프 100 | 유학 97]
+  - 빌드: node tools/build_leaflet.js  (leaflet/ 폴더에 PDF·미리보기 PNG 생성)
+  - 금액·날짜·정원은 시즌마다 바뀌므로 넣지 않는다 (01 매뉴얼 3장, 11 매뉴얼 4장 기준).
+-->
+<style>
+@font-face{font-family:"Pretendard";font-weight:400;src:url(fonts/Pretendard-Regular.woff2) format("woff2")}
+@font-face{font-family:"Pretendard";font-weight:500;src:url(fonts/Pretendard-Medium.woff2) format("woff2")}
+@font-face{font-family:"Pretendard";font-weight:600;src:url(fonts/Pretendard-SemiBold.woff2) format("woff2")}
+@font-face{font-family:"Pretendard";font-weight:700;src:url(fonts/Pretendard-Bold.woff2) format("woff2")}
+@font-face{font-family:"Pretendard";font-weight:800;src:url(fonts/Pretendard-ExtraBold.woff2) format("woff2")}
+@font-face{font-family:"Pretendard";font-weight:900;src:url(fonts/Pretendard-Black.woff2) format("woff2")}
+
+:root{
+  --b:3mm;                         /* 재단 여유 (사무용 인쇄는 0) */
+  --navy:#05205B; --navy2:#0A2C74; --cyan:#17B8F6; --accent:#0B78B8;
+  --soft:#EAF6FD; --soft2:#F4F9FD; --ink:#0D1B36; --body:#36435C; --muted:#66748C; --line:#D5E0EB;
+  --pad:8.5mm;                     /* 접는 선·재단선에서 글자까지 안전 여백 */
+}
+@page{size:calc(297mm + 2 * var(--b)) calc(210mm + 2 * var(--b));margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+body{font-family:"Pretendard",sans-serif;color:var(--body);font-size:7.6pt;line-height:1.55;letter-spacing:-.015em;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+b,strong{font-weight:700;color:var(--ink)}
+ul,ol{list-style:none}
+svg.ic{width:4.4mm;height:4.4mm;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ── 낱장 · 면 배치 ───────────────────────────── */
+.sheet{position:relative;width:calc(297mm + 2 * var(--b));height:calc(210mm + 2 * var(--b));overflow:hidden;
+  break-after:page;page-break-after:always}
+.sheet:last-child{break-after:auto;page-break-after:auto}
+.panel{position:absolute;top:0;height:100%;overflow:hidden}
+.panel>.in{position:absolute;inset:calc(var(--b) + 11mm) var(--pad) calc(var(--b) + 9mm) var(--pad);display:flex;flex-direction:column}
+/* 바깥면: 날개 97 | 뒷표지 100 | 앞표지 100 */
+.flap {left:0;width:calc(var(--b) + 97mm)}
+.back {left:calc(var(--b) + 97mm);width:100mm}
+.cover{left:calc(var(--b) + 197mm);width:calc(100mm + var(--b))}
+/* 안쪽면: 소개 100 | 캠프 100 | 유학 97 */
+.about{left:0;width:calc(var(--b) + 100mm)}
+.camp {left:calc(var(--b) + 100mm);width:100mm}
+.study{left:calc(var(--b) + 200mm);width:calc(97mm + var(--b))}
+/* 바깥쪽 가장자리 면은 재단 여유만큼 안쪽 여백을 더 준다 */
+.flap>.in,.about>.in{left:calc(var(--b) + var(--pad))}
+.cover>.in,.study>.in{right:calc(var(--b) + var(--pad))}
+
+/* 접는 선 확인용 (미리보기에서만) */
+.guides .sheet::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:9;
+  background:
+    linear-gradient(#e0367a,#e0367a) no-repeat calc(var(--b) + var(--f1)) 0/0.25mm 100%,
+    linear-gradient(#e0367a,#e0367a) no-repeat calc(var(--b) + var(--f2)) 0/0.25mm 100%;
+  outline:0.25mm dashed #e0367a;outline-offset:calc(-1 * var(--b))}
+.guides .outside{--f1:97mm;--f2:197mm}
+.guides .inside{--f1:100mm;--f2:200mm}
+
+/* ── 공통 글자 ───────────────────────────── */
+.eyebrow{font-size:6.8pt;font-weight:800;letter-spacing:.2em;color:var(--accent);margin-bottom:2.2mm}
+h2{font-size:16.5pt;font-weight:800;line-height:1.28;letter-spacing:-.035em;color:var(--navy)}
+h2 em{font-style:normal;color:var(--accent)}
+.lead{font-size:8.5pt;line-height:1.62;margin-top:3.8mm;color:var(--body)}
+.sec-h{display:flex;align-items:center;gap:2mm;font-size:8.8pt;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:2.4mm}
+.sec-h::after{content:"";flex:1;height:0.25mm;background:var(--line)}
+.fine{font-size:6.4pt;line-height:1.55;color:var(--muted)}
+
+/* ── 앞표지 ───────────────────────────── */
+.cover{background:
+   radial-gradient(90mm 70mm at 100% 0%,rgba(23,184,246,.28),transparent 70%),
+   radial-gradient(80mm 60mm at 0% 100%,rgba(23,184,246,.14),transparent 70%),
+   linear-gradient(165deg,#0B2F7A 0%,var(--navy) 55%,#031746 100%);color:#fff}
+.cover .in{inset:calc(var(--b) + 13mm) calc(var(--b) + var(--pad)) calc(var(--b) + 10mm) var(--pad)}
+.cv-logo{width:47mm;height:auto;display:block}
+.cv-en{font-size:6.2pt;font-weight:700;letter-spacing:.32em;color:rgba(255,255,255,.62);margin-top:2.6mm}
+.cv-mid{margin-top:19mm}
+.cv-eyebrow{font-size:6.6pt;font-weight:800;letter-spacing:.22em;color:var(--cyan)}
+.cv-title{font-size:30pt;font-weight:900;line-height:1.16;letter-spacing:-.045em;color:#fff;margin-top:3.2mm}
+.cv-title em{font-style:normal;color:var(--cyan)}
+.cv-sub{font-size:9pt;line-height:1.6;color:rgba(255,255,255,.86);margin-top:5mm;font-weight:500}
+.cv-quote{font-size:7.2pt;font-weight:600;color:rgba(255,255,255,.58);margin-top:2.2mm;letter-spacing:.01em}
+.cv-map{position:absolute;left:0;right:0;top:calc(var(--b) + 131mm);height:auto}
+.cv-map img{display:block;width:100%;height:auto}
+.cv-map .lb{position:absolute;font-size:5.4pt;font-weight:800;letter-spacing:.14em;color:#fff;white-space:nowrap;line-height:1}
+.cv-map .lb.ctr{transform:translateX(-50%);text-align:center}
+.cv-map .lb small{display:block;font-size:5.6pt;font-weight:600;letter-spacing:-.01em;color:rgba(255,255,255,.66);margin-top:.7mm}
+.cv-foot{position:absolute;left:var(--pad);right:calc(var(--b) + var(--pad));bottom:calc(var(--b) + 10mm)}
+.cv-tags{display:flex;flex-wrap:wrap;gap:1.6mm}
+.cv-tags li{font-size:7pt;font-weight:700;color:#fff;border:0.3mm solid rgba(255,255,255,.34);border-radius:10mm;padding:.9mm 2.8mm;line-height:1.3}
+.cv-call{display:flex;align-items:baseline;justify-content:space-between;margin-top:4.2mm;padding-top:3.2mm;border-top:0.25mm solid rgba(255,255,255,.22);
+  font-size:6.8pt;font-weight:700;color:rgba(255,255,255,.72);letter-spacing:.02em}
+.cv-call b{font-size:11.5pt;font-weight:800;color:#fff;letter-spacing:.01em}
+
+/* ── 날개: 인투유학이 다른 점 ───────────────────────────── */
+.flap{background:var(--soft)}
+.flap .lead b{color:var(--navy)}
+.why{margin-top:3mm;flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
+.why li{display:flex;gap:3.4mm;align-items:flex-start}
+.why .ico svg{width:5mm;height:5mm}
+.why .ico{width:9.6mm;height:9.6mm;border-radius:2.8mm;background:#fff;color:var(--accent);display:flex;align-items:center;justify-content:center;flex:none;
+  box-shadow:0 0 0 0.25mm rgba(11,120,184,.16)}
+.why b{display:block;font-size:9.3pt;font-weight:800;color:var(--navy);letter-spacing:-.025em;line-height:1.35}
+.why span{display:block;font-size:7.7pt;line-height:1.55;margin-top:.6mm}
+.flap-foot{margin-top:2mm;padding-top:4mm;border-top:0.25mm solid #c9dcec;font-size:6.6pt;color:var(--muted);line-height:1.5}
+.flap-foot b{color:var(--navy)}
+
+/* ── 뒷표지: 상담 · 신청 ───────────────────────────── */
+.back{background:#fff}
+.steps{margin-top:5mm;position:relative}
+.steps::before{content:"";position:absolute;left:2.9mm;top:2mm;bottom:3mm;width:0.3mm;background:var(--line)}
+.steps li{position:relative;display:flex;gap:3mm;padding-bottom:3.3mm}
+.steps li:last-child{padding-bottom:0}
+.steps i{flex:none;width:6mm;height:6mm;border-radius:50%;background:var(--navy);color:#fff;font-style:normal;font-size:5.8pt;font-weight:800;
+  display:flex;align-items:center;justify-content:center;letter-spacing:0;position:relative;z-index:1}
+.steps li:nth-child(4) i,.steps li:nth-child(5) i{background:var(--accent)}
+.steps b{display:block;font-size:8.7pt;font-weight:800;color:var(--navy);line-height:1.3;margin-top:.5mm}
+.steps span{display:block;font-size:7.5pt;line-height:1.5;margin-top:.3mm}
+.note{margin-top:3.6mm;font-size:7.1pt;line-height:1.55;background:var(--soft2);border-radius:2mm;padding:2.2mm 3mm;color:var(--body)}
+.note b{color:var(--navy)}
+.help{margin-top:5mm}
+.help li{display:flex;gap:2.2mm;align-items:center;font-size:7.6pt;line-height:1.4;padding:1.5mm 0;border-bottom:0.25mm dotted var(--line)}
+.help li:last-child{border-bottom:0}
+.help li svg{color:var(--accent);width:3.9mm;height:3.9mm}
+.help small{font-size:6.3pt;color:var(--muted)}
+.contact{margin-top:auto;background:var(--navy);border-radius:3mm;padding:4.2mm 4.2mm 4mm;color:#fff;display:flex;gap:3.5mm;align-items:flex-end;
+  background-image:radial-gradient(40mm 30mm at 100% 0%,rgba(23,184,246,.28),transparent 70%)}
+.ct-l{flex:1;min-width:0}
+.ct-h{font-size:6.6pt;font-weight:800;letter-spacing:.2em;color:var(--cyan)}
+.ct-tel{font-size:15.5pt;font-weight:900;letter-spacing:-.01em;line-height:1.15;margin-top:1mm;color:#fff}
+.ct-tel small{display:block;font-size:6.4pt;font-weight:600;color:rgba(255,255,255,.66);letter-spacing:0;margin-top:.4mm}
+.ct-dl{display:grid;grid-template-columns:auto 1fr;gap:.7mm 2.4mm;margin-top:2.6mm;font-size:6.9pt;line-height:1.35}
+.ct-dl dt{color:rgba(255,255,255,.6);font-weight:600}
+.ct-dl dd{color:#fff;font-weight:700;letter-spacing:0}
+.ct-qr{flex:none;width:19mm;text-align:center}
+.ct-qr .qbox{background:#fff;border-radius:1.6mm;padding:1.5mm}
+.ct-qr img{display:block;width:100%;height:auto}
+.ct-qr span{display:block;font-size:5.5pt;font-weight:600;color:rgba(255,255,255,.72);margin-top:1.2mm;line-height:1.3}
+.back-foot{margin-top:3.6mm}
+.back-sign{display:flex;align-items:center;justify-content:space-between;margin-top:2.6mm}
+.back-sign img{height:5.6mm;width:auto}
+.back-sign span{font-size:5.8pt;font-weight:700;letter-spacing:.18em;color:var(--muted)}
+
+/* ── 안쪽: 소개 ───────────────────────────── */
+.about{background:#fff}
+.about .lead b{color:var(--navy)}
+.net{display:flex;flex-direction:column;gap:2.8mm}
+.net li{display:flex;gap:3.2mm;align-items:center;padding:3.4mm 3.4mm;border-radius:2.4mm;background:var(--soft2);border:0.25mm solid #e1ebf4}
+.net .pin{flex:none;width:8.4mm;height:8.4mm;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center}
+.net .pin svg{width:3.8mm;height:3.8mm}
+.net li:first-child{background:var(--navy);border-color:var(--navy)}
+.net li:first-child .pin{background:var(--cyan);color:var(--navy)}
+.net li:first-child b,.net li:first-child span{color:#fff}
+.net li:first-child em{color:var(--cyan)}
+.net b{display:block;font-size:9.4pt;font-weight:800;color:var(--navy);line-height:1.3}
+.net em{font-style:normal;font-size:5.6pt;font-weight:800;letter-spacing:.16em;color:var(--accent);margin-left:1.4mm;vertical-align:.3mm}
+.net span{display:block;font-size:7.6pt;line-height:1.5;margin-top:.4mm}
+.texas{margin-top:auto}
+.netw{margin-top:auto}
+.tx{display:grid;grid-template-columns:1fr 1fr;gap:2.4mm}
+.tx li{border:0.25mm solid var(--line);border-radius:2.4mm;padding:3.2mm 3mm;display:flex;gap:2.2mm;align-items:flex-start;font-size:7.3pt;line-height:1.45}
+.tx li svg{color:var(--accent);width:4mm;height:4mm;margin-top:.2mm}
+.tx b{display:block;font-size:8.3pt;color:var(--navy)}
+.src{margin-top:2mm}
+
+/* ── 안쪽: 캠프 · 유학 공통 프로그램 목록 ───────────────────────────── */
+.camp{background:#fff;border-left:0}
+.study{background:var(--soft2)}
+.progs{margin-top:3mm;flex:1;display:flex;flex-direction:column;justify-content:space-evenly;gap:2.6mm}
+.pg{border-left:0.9mm solid var(--cyan);padding:.6mm 0 .6mm 3.2mm}
+.pg header{display:flex;align-items:baseline;justify-content:space-between;gap:2mm}
+.pg header b{font-size:9.3pt;font-weight:800;color:var(--navy);letter-spacing:-.03em;line-height:1.3}
+.pg header em{font-style:normal;flex:none;font-size:6.5pt;font-weight:700;color:var(--accent);white-space:nowrap}
+.pg .meta{font-size:7.3pt;font-weight:700;color:var(--accent);margin-top:.4mm;line-height:1.4}
+.pg p{font-size:7.6pt;line-height:1.5;margin-top:.3mm}
+.study .pg{border-left-color:var(--navy)}
+.pg.hero{background:var(--navy);border-left:0;border-radius:2.8mm;padding:3.6mm 3.8mm 3.6mm;color:rgba(255,255,255,.86)}
+.pg.hero header b{color:#fff}
+.pg.hero header em,.pg.hero .meta{color:var(--cyan)}
+.pg.hero .alum{margin-top:1.6mm;padding-top:1.6mm;border-top:0.25mm solid rgba(255,255,255,.2);font-size:7pt;color:rgba(255,255,255,.78)}
+.pg.hero .alum b{color:#fff;font-weight:700}
+.pg.hero .alum sup{font-size:5.5pt;color:var(--cyan);margin-left:.2mm}
+
+/* 미국 캠프 생활 */
+.life{margin-top:3mm}
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:2.2mm}
+.lg li{display:flex;gap:2.2mm;align-items:flex-start;background:var(--soft2);border-radius:2.4mm;padding:2.7mm 2.8mm;font-size:7pt;line-height:1.4}
+.lg li svg{color:var(--accent);width:4mm;height:4mm;margin-top:.2mm}
+.lg b{display:block;font-size:8pt;color:var(--navy);line-height:1.3}
+.camp-note{margin-top:2mm}
+
+/* 입시 로드맵 */
+.road{margin-top:3mm}
+.rr{display:flex;align-items:center;flex-wrap:nowrap;gap:1mm;margin-bottom:2mm}
+.rr span{font-size:6.9pt;font-weight:700;color:var(--navy);background:#fff;border:0.25mm solid #cfdcea;border-radius:1.4mm;padding:1.15mm 1.7mm;white-space:nowrap;line-height:1.25}
+.rr span.end{background:var(--navy);border-color:var(--navy);color:#fff}
+.rr i{font-style:normal;color:var(--accent);font-size:6.4pt;font-weight:800}
+.study .fine{margin-top:2mm}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/> <path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/> <circle cx="9" cy="7" r="4"/> <path d="M22 21v-2a4 4 0 0 0-3-3.87"/> <path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="i-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/> <path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-heart-handshake" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/> <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/> <path d="m18 15-2-2"/> <path d="m15 18-2-2"/></symbol>
+<symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/> <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/> <circle cx="18" cy="5" r="3"/></symbol>
+<symbol id="i-bed-double" viewBox="0 0 24 24"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/> <path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/> <path d="M12 4v6"/> <path d="M2 18h20"/></symbol>
+<symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/> <path d="M7 2v20"/> <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/> <path d="M12 18h.01"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/> <circle cx="12" cy="12" r="10"/></symbol>
+<symbol id="i-book-open" viewBox="0 0 24 24"><path d="M12 7v14"/> <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+<symbol id="i-hand-helping" viewBox="0 0 24 24"><path d="M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14"/> <path d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/> <path d="m2 13 6 6"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+<symbol id="i-message-circle" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/> <path d="M2 12h20"/></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+<symbol id="i-file-check" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/> <path d="M14 2v4a2 2 0 0 0 2 2h4"/> <path d="m9 15 2 2 4-4"/></symbol>
+<symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/> <path d="M22 10v6"/> <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+<symbol id="i-school" viewBox="0 0 24 24"><path d="M14 22v-4a2 2 0 1 0-4 0v4"/> <path d="m18 10 3.447 1.724a1 1 0 0 1 .553.894V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7.382a1 1 0 0 1 .553-.894L6 10"/> <path d="M18 5v17"/> <path d="m4 6 7.106-3.553a2 2 0 0 1 1.788 0L20 6"/> <path d="M6 5v17"/> <circle cx="12" cy="9" r="2"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/> <circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/> <path d="m12 5 7 7-7 7"/></symbol>
+</defs></svg>
+
+<!-- ════════════ 1쪽 · 바깥면 ════════════ -->
+<div class="sheet outside">
+
+  <!-- 날개 (앞표지를 열면 오른쪽에 보이는 면) -->
+  <section class="panel flap"><div class="in">
+    <p class="eyebrow">WHY INTO</p>
+    <h2>인투유학이<br>다른 점</h2>
+    <p class="lead">인투유학 캠프는 <b>학습과 생활 훈련</b>입니다. 공부는 물론 생활 습관과 인성까지 함께 관리합니다.</p>
+    <ul class="why">
+      <li><span class="ico"><svg class="ic"><use href="#i-shield-check"/></svg></span>
+        <div><b>공식 현지 가디언</b><span>미국 현지에서 30년째 거주 중인 시민권자가 인투유학 공식 가디언으로 함께합니다.</span></div></li>
+      <li><span class="ico"><svg class="ic"><use href="#i-house"/></svg></span>
+        <div><b>관리형 기숙 생활</b><span>남녀를 구분한 2인 1실 기숙사에서 유학생 멘토와 생활하며, 핸드폰과 취침 시간까지 지도합니다.</span></div></li>
+      <li><span class="ico"><svg class="ic"><use href="#i-users"/></svg></span>
+        <div><b>소수정예 운영</b><span>시즌 캠프는 정원을 정해 선착순으로 모집하고, 조기유학은 학년당 유학생을 최대 6명으로 운영합니다.</span></div></li>
+      <li><span class="ico"><svg class="ic"><use href="#i-badge-check"/></svg></span>
+        <div><b>정식 인가 학교</b><span>조기유학 학교는 미국 정식 인가(AdvancED, 현 Cognia)를 받은 사립학교입니다.</span></div></li>
+      <li><span class="ico"><svg class="ic"><use href="#i-heart-handshake"/></svg></span>
+        <div><b>부모님도 함께</b><span>학부모 동반 캠프에서는 부모 아카데미(미국 입시·비자·유학 생활·대학 장학금)와 1:1 진로 상담을 운영합니다.</span></div></li>
+      <li><span class="ico"><svg class="ic"><use href="#i-route"/></svg></span>
+        <div><b>캠프부터 대학까지</b><span>캠프 체험에서 유학 준비, 조기유학과 대학 진학까지 한 곳에서 경로를 설계합니다.</span></div></li>
+    </ul>
+    <p class="flap-foot">미국 · 필리핀 · 말레이시아 · 태국 치앙마이 <b>현지 팀</b>이 학생과 학부모를 직접 맞이합니다.</p>
+  </div></section>
+
+  <!-- 뒷표지 -->
+  <section class="panel back"><div class="in">
+    <p class="eyebrow">HOW TO JOIN</p>
+    <h2>상담 · 신청 안내</h2>
+    <ol class="steps">
+      <li><i>01</i><div><b>문의</b><span>전화나 카카오톡으로 편하게 연락해 주세요.</span></div></li>
+      <li><i>02</i><div><b>1:1 상담</b><span>자녀의 학년·목표·희망 시기를 듣고 맞는 프로그램을 안내합니다.</span></div></li>
+      <li><i>03</i><div><b>신청서 작성</b><span>온라인 신청서로 접수합니다.</span></div></li>
+      <li><i>04</i><div><b>계약금 입금 · 좌석 배정</b><span>계약금 입금이 확인된 순서대로 좌석을 배정하고, 정원이 차면 마감합니다.</span></div></li>
+      <li><i>05</i><div><b>잔금 납부 · 등록 확정</b><span>참가비 전액을 납부하시면 등록이 확정됩니다.</span></div></li>
+      <li><i>06</i><div><b>출국 준비</b><span>출국 전 준비 사항과 서류를 안내해 드립니다.</span></div></li>
+    </ol>
+    <p class="note"><b>조기유학</b>은 상담 → 서류 준비 → 유학 준비(Prep) 과정 → 지원·등록(원서·비자) → 최종 점검·출국 순으로 진행합니다.</p>
+    <div class="help">
+      <p class="sec-h">함께 도와드립니다</p>
+      <ul>
+        <li><svg class="ic"><use href="#i-plane"/></svg><span>항공권 · ESTA(미국 전자여행허가) · 여행자보험 대행</span></li>
+        <li><svg class="ic"><use href="#i-file-check"/></svg><span>유학생 비자(F-1) · I-20 수속 지원 <small>(조기유학 관리형 보딩)</small></span></li>
+        <li><svg class="ic"><use href="#i-graduation-cap"/></svg><span>학부모 유학 설명회 <small>— 일정은 문의해 주세요</small></span></li>
+      </ul>
+    </div>
+    <div class="contact">
+      <div class="ct-l">
+        <p class="ct-h">상담 문의</p>
+        <p class="ct-tel">031-334-2414</p>
+        <dl class="ct-dl">
+          <dt>카카오톡</dt><dd>ID historymaker911</dd>
+          <dt>이메일</dt><dd>intoedu0309@gmail.com</dd>
+          <dt>웹사이트</dt><dd>intoabroad.com</dd>
+        </dl>
+      </div>
+      <div class="ct-qr"><div class="qbox"><img src="img/qr-intoabroad.svg" alt="intoabroad.com QR"></div><span>웹사이트<br>바로가기</span></div>
+    </div>
+    <div class="back-foot">
+      <p class="fine">· 시즌별 일정과 참가비는 상담 때 최신 안내 자료로 알려 드립니다.<br>· 현지 사정과 날씨에 따라 일정이 변경될 수 있습니다.</p>
+      <div class="back-sign"><img src="img/logo-light.svg" alt="인투유학"><span>INTO GLOBAL EDUCATION</span></div>
+    </div>
+  </div></section>
+
+  <!-- 앞표지 -->
+  <section class="panel cover">
+    <div class="in">
+      <img class="cv-logo" src="img/logo-dark.svg" alt="인투유학">
+      <p class="cv-en">INTO GLOBAL EDUCATION</p>
+      <div class="cv-mid">
+        <p class="cv-eyebrow">MORE THAN STUDY ABROAD</p>
+        <h1 class="cv-title">세계의 장벽을<br><em>낮추다</em></h1>
+        <p class="cv-sub">캠프에서 조기유학, 대학 진학까지<br>현지에서 직접 관리하는 해외 교육</p>
+        <p class="cv-quote">Explore your global future</p>
+      </div>
+    </div>
+    <div class="cv-map">
+      <img src="img/map-network.svg" alt="">
+      <span class="lb ctr" style="left:24%;top:4%">KOREA<small>한국</small></span>
+      <span class="lb" style="left:84%;top:52%">TEXAS<small>미국</small></span>
+      <span class="lb" style="left:24.6%;top:58.6%">PHILIPPINES<small>필리핀</small></span>
+      <span class="lb" style="left:15.2%;top:76%">MALAYSIA<small>말레이시아</small></span>
+      <span class="lb" style="left:3.4%;top:31%">CHIANG MAI<small>태국</small></span>
+    </div>
+    <div class="cv-foot">
+      <ul class="cv-tags"><li>영어 캠프</li><li>스쿨링 캠프</li><li>조기유학</li><li>대학 유학</li></ul>
+      <p class="cv-call">상담 문의 <b>031-334-2414</b></p>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════ 2쪽 · 안쪽면 ════════════ -->
+<div class="sheet inside">
+
+  <!-- 소개 -->
+  <section class="panel about"><div class="in">
+    <p class="eyebrow">ABOUT</p>
+    <h2>캠프에서 대학까지,<br><em>관리형</em> 해외 교육</h2>
+    <p class="lead">인투유학은 미국·필리핀·말레이시아 현지 유학센터와 국내 학원을 연결해, 학생들의 캠프와 유학을 <b>관리형</b>으로 운영하는 회사입니다.</p>
+    <div class="netw">
+      <p class="sec-h">현지 네트워크</p>
+      <ul class="net">
+        <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
+          <div><b>미국 텍사스<em>USA</em></b><span>스쿨링&nbsp;캠프 · 학부모&nbsp;동반&nbsp;캠프 · 비전트립 · 조기유학 · 대학&nbsp;유학</span></div></li>
+        <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
+          <div><b>필리핀<em>PHILIPPINES</em></b><span>영어 집중 캠프 · 필아메리카존 프렙과정(미국 유학 준비)</span></div></li>
+        <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
+          <div><b>말레이시아<em>MALAYSIA</em></b><span>INTI 대학 어학 캠프 · 대학 유학(INTI · HELP)</span></div></li>
+        <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
+          <div><b>태국 치앙마이<em>THAILAND</em></b><span>부모 동반 영어 캠프</span></div></li>
+      </ul>
+    </div>
+    <div class="texas">
+      <p class="sec-h">왜 텍사스인가</p>
+      <ul class="tx">
+        <li><svg class="ic"><use href="#i-plane"/></svg><div><b>이동이 편리한 위치</b>미국 중남부</div></li>
+        <li><svg class="ic"><use href="#i-globe"/></svg><div><b>강한 경제 기반</b></div></li>
+        <li><svg class="ic"><use href="#i-compass"/></svg><div><b>공학 · 과학 · 기술</b>산업이 발달한 지역</div></li>
+        <li><svg class="ic"><use href="#i-school"/></svg><div><b>교육 도시</b>텍사스 A&amp;M이 있는 칼리지스테이션</div></li>
+      </ul>
+    </div>
+  </div></section>
+
+  <!-- 캠프 -->
+  <section class="panel camp"><div class="in">
+    <p class="eyebrow">CAMP</p>
+    <h2>공부와 생활을 함께 배우는<br><em>인투유학 캠프</em></h2>
+    <div class="progs">
+      <article class="pg"><header><b>미국 스쿨링 캠프</b><em>미국 텍사스</em></header>
+        <p class="meta">초5~고2 단독 참가 · 매달 4주 과정</p>
+        <p>사립학교 정규 수업과 방과후 활동, 기숙사 생활 훈련</p></article>
+      <article class="pg"><header><b>학부모 동반 스쿨링 캠프</b><em>가을 · 겨울</em></header>
+        <p class="meta">만 5세부터 · 초4 이하는 부모 동반 필수</p>
+        <p>현지 수업과 문화 체험, 부모 아카데미 (겨울 캠프는 LA 탐방 포함)</p></article>
+      <article class="pg"><header><b>가족 동반 비전트립</b><em>미국 텍사스</em></header>
+        <p class="meta">가족 단위 소수 정원</p>
+        <p>텍사스 도시·대학 탐방, 부모 아카데미, 개인 상담</p></article>
+      <article class="pg"><header><b>필리핀 영어 집중 캠프</b><em>필리핀 다스마리냐스</em></header>
+        <p class="meta">초5부터 · 4주 / 8주</p>
+        <p>하루 6시간 원어민 수업, 24시간 English Policy, 회화·토플 과정</p></article>
+      <article class="pg"><header><b>치앙마이 부모 동반 영어 캠프</b><em>태국 치앙마이</em></header>
+        <p class="meta">유치원~초등 자녀와 함께하는 가족</p></article>
+      <article class="pg"><header><b>말레이시아 INTI 대학 어학 캠프</b><em>말레이시아</em></header>
+        <p class="meta">중3~대학생 · 4주</p></article>
+    </div>
+    <div class="life">
+      <p class="sec-h">미국 캠프 생활</p>
+      <ul class="lg">
+        <li><svg class="ic"><use href="#i-bed-double"/></svg><div><b>2인 1실 기숙사</b>남녀 구분 · 유학생 멘토</div></li>
+        <li><svg class="ic"><use href="#i-utensils"/></svg><div><b>한식 중심 식사</b>학교 점심은 수제 도시락</div></li>
+        <li><svg class="ic"><use href="#i-smartphone"/></svg><div><b>생활 습관 훈련</b>핸드폰 관리 · 취침 시간</div></li>
+        <li><svg class="ic"><use href="#i-hand-helping"/></svg><div><b>공동체 생활</b>식사 당번 등 함께하는 생활</div></li>
+        <li><svg class="ic"><use href="#i-compass"/></svg><div><b>스몰투어</b>주 2회 안팎 · 시즌별 문화 체험</div></li>
+        <li><svg class="ic"><use href="#i-book-open"/></svg><div><b>영어책 한 권 완독</b>미국에서 끝내는 원서 읽기</div></li>
+      </ul>
+      <p class="fine camp-note">캠프 좌석은 계약금 입금 순서대로 배정되며, 시즌별 정원은 상담 때 안내해 드립니다.</p>
+    </div>
+  </div></section>
+
+  <!-- 유학 -->
+  <section class="panel study"><div class="in">
+    <p class="eyebrow">STUDY ABROAD</p>
+    <h2>대학까지 이어지는<br><em>인투유학 유학</em></h2>
+    <div class="progs">
+      <article class="pg hero"><header><b>미국 조기유학 · 관리형 보딩</b><em>텍사스 브라이언</em></header>
+        <p class="meta">코너스톤 · 정식 인가 소규모 사립학교 · 학년당 유학생 최대 6명</p>
+        <p>2인 1실 기숙 · 등하교 라이드 · 매일 2시간 방과후 학업관리 · 아카데믹 어드바이저 · SAT·GPA 관리 · 격달 리포트 · 학기별 대학 투어</p>
+        <p class="alum">졸업생 진학 대학<sup>*</sup> <b>Yale · NYU · UT-Austin · Texas&nbsp;A&amp;M</b>&nbsp;등</p></article>
+      <article class="pg"><header><b>필아메리카존 프렙과정</b><em>필리핀 · 6개월</em></header>
+        <p class="meta">고교 졸업 · 검정고시 · GED 합격자 · 1월 / 7월 입소</p>
+        <p>토플 집중부터 유학 실전 영어, 입학 행정까지. 월 2회 해외봉사로 리더십 포트폴리오도 함께 쌓습니다.</p></article>
+      <article class="pg"><header><b>미국 대학 유학</b><em>블린 칼리지 → 텍사스 A&amp;M</em></header>
+        <p class="meta">블린 입학 TOEFL iBT 61 이상 · A&amp;M 편입 목표 시 80 이상</p>
+        <p>2년제 블린 칼리지에서 시작해 텍사스 A&amp;M 편입을 준비합니다.</p></article>
+      <article class="pg"><header><b>말레이시아 유학</b><em>INTI · HELP 대학</em></header>
+        <p class="meta">한국 고교 졸업(검정고시 포함)</p>
+        <p>영국·호주 대학 편입, 또는 말레이시아에서 영국·호주 학위 취득(트위닝)</p></article>
+    </div>
+    <div class="road">
+      <p class="sec-h">텍사스 입시 로드맵</p>
+      <div class="rr"><span>코너스톤 고교 3년</span><i>→</i><span class="end">텍사스 A&amp;M 4년</span></div>
+      <div class="rr"><span>코너스톤 고교 3년</span><i>→</i><span>블린 2년</span><i>→</i><span class="end">A&amp;M 2년</span></div>
+      <div class="rr"><span>한국 고교 졸업·GED</span><i>→</i><span>프렙 6개월</span><i>→</i><span>블린 2년</span><i>→</i><span class="end">A&amp;M 2년</span></div>
+      <p class="fine">* 진학 결과는 학교 안내 기준이며, 개별 결과는 성적·활동·지원 전략에 따라 달라질 수 있습니다. 입학·편입은 각 학교의 심사를 거칩니다.</p>
+    </div>
+  </div></section>
+</div>
+</body>
+</html>
