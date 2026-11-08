@@ -191,7 +191,15 @@ h2 em{font-style:normal;color:var(--accent)}
 .pg.hero .alum b{color:#fff;font-weight:700}
 .pg.hero .alum sup{font-size:5.5pt;color:var(--cyan);margin-left:.2mm}
 
-/* 미국 캠프 생활 */
+/* 캠프: 인투유학 캠프의 장점 5가지 */
+.camp .lead b{color:var(--navy)}
+.adv{margin-top:3mm;flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
+.adv li{display:flex;gap:3.2mm;align-items:flex-start;padding:3mm 0;border-top:0.25mm solid var(--line)}
+.adv li:first-child{border-top:0}
+.adv i{font-style:normal;flex:none;width:10.5mm;font-size:17pt;font-weight:900;color:var(--cyan);line-height:1;letter-spacing:-.04em}
+.adv b{display:block;font-size:9.8pt;font-weight:800;color:var(--navy);line-height:1.3;letter-spacing:-.03em}
+.adv span{display:block;font-size:7.8pt;line-height:1.58;margin-top:.9mm}
+/* (예전 미국 캠프 생활 격자 — 지금은 쓰지 않음) */
 .life{margin-top:3mm}
 .lg{display:grid;grid-template-columns:1fr 1fr;gap:2.2mm}
 .lg li{display:flex;gap:2.2mm;align-items:flex-start;background:var(--soft2);border-radius:2.4mm;padding:2.7mm 2.8mm;font-size:7pt;line-height:1.4}
@@ -241,14 +249,12 @@ h2 em{font-style:normal;color:var(--accent)}
   <section class="panel flap"><div class="in">
     <p class="eyebrow">WHY INTO</p>
     <h2>인투유학이<br>다른 점</h2>
-    <p class="lead">인투유학 캠프는 <b>학습과 생활 훈련</b>입니다. 공부는 물론 생활 습관과 인성까지 함께 관리합니다.</p>
+    <p class="lead">인투유학은 학생이 현지에서 공부와 생활에 집중할 수 있도록 <b>관리형</b>으로 운영합니다.</p>
     <ul class="why">
       <li><span class="ico"><svg class="ic"><use href="#i-shield-check"/></svg></span>
         <div><b>공식 현지 가디언</b><span>미국 현지에서 30년째 거주 중인 시민권자가 인투유학 공식 가디언으로 함께합니다.</span></div></li>
       <li><span class="ico"><svg class="ic"><use href="#i-house"/></svg></span>
-        <div><b>관리형 기숙 생활</b><span>남녀를 구분한 2인 1실 기숙사에서 유학생 멘토와 생활하며, 핸드폰과 취침 시간까지 지도합니다.</span></div></li>
-      <li><span class="ico"><svg class="ic"><use href="#i-users"/></svg></span>
-        <div><b>소수정예 운영</b><span>시즌 캠프는 정원을 정해 선착순으로 모집하고, 조기유학은 학년당 유학생을 최대 6명으로 운영합니다.</span></div></li>
+        <div><b>관리형 기숙 생활</b><span>남녀를 구분한 2인 1실 기숙사에서 유학생 멘토가 생활을 함께 챙깁니다.</span></div></li>
       <li><span class="ico"><svg class="ic"><use href="#i-badge-check"/></svg></span>
         <div><b>정식 인가 학교</b><span>조기유학 학교는 미국 정식 인가(AdvancED, 현 Cognia)를 받은 사립학교입니다.</span></div></li>
       <li><span class="ico"><svg class="ic"><use href="#i-heart-handshake"/></svg></span>
@@ -344,7 +350,7 @@ h2 em{font-style:normal;color:var(--accent)}
         <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
           <div><b>필리핀<em>PHILIPPINES</em></b><span>영어 집중 캠프 · 필아메리카존 프렙과정(미국 유학 준비)</span></div></li>
         <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
-          <div><b>말레이시아<em>MALAYSIA</em></b><span>INTI 대학 어학 캠프 · 대학 유학(INTI · HELP)</span></div></li>
+          <div><b>말레이시아<em>MALAYSIA</em></b><span>영어 집중 캠프 · 대학 유학(선웨이 · 테일러스)</span></div></li>
         <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
           <div><b>태국 치앙마이<em>THAILAND</em></b><span>부모 동반 영어 캠프</span></div></li>
       </ul>
@@ -364,36 +370,15 @@ h2 em{font-style:normal;color:var(--accent)}
   <section class="panel camp"><div class="in">
     <p class="eyebrow">CAMP</p>
     <h2>공부와 생활을 함께 배우는<br><em>인투유학 캠프</em></h2>
-    <div class="progs">
-      <article class="pg"><header><b>미국 스쿨링 캠프</b><em>미국 텍사스</em></header>
-        <p class="meta">초5~고2 단독 참가 · 매달 4주 과정</p>
-        <p>사립학교 정규 수업과 방과후 활동, 기숙사 생활 훈련</p></article>
-      <article class="pg"><header><b>학부모 동반 스쿨링 캠프</b><em>가을 · 겨울</em></header>
-        <p class="meta">만 5세부터 · 초4 이하는 부모 동반 필수</p>
-        <p>현지 수업과 문화 체험, 부모 아카데미 (겨울 캠프는 LA 탐방 포함)</p></article>
-      <article class="pg"><header><b>가족 동반 비전트립</b><em>미국 텍사스</em></header>
-        <p class="meta">가족 단위 소수 정원</p>
-        <p>텍사스 도시·대학 탐방, 부모 아카데미, 개인 상담</p></article>
-      <article class="pg"><header><b>필리핀 영어 집중 캠프</b><em>필리핀 다스마리냐스</em></header>
-        <p class="meta">초5부터 · 4주 / 8주</p>
-        <p>하루 6시간 원어민 수업, 24시간 English Policy, 회화·토플 과정</p></article>
-      <article class="pg"><header><b>치앙마이 부모 동반 영어 캠프</b><em>태국 치앙마이</em></header>
-        <p class="meta">유치원~초등 자녀와 함께하는 가족</p></article>
-      <article class="pg"><header><b>말레이시아 INTI 대학 어학 캠프</b><em>말레이시아</em></header>
-        <p class="meta">중3~대학생 · 4주</p></article>
-    </div>
-    <div class="life">
-      <p class="sec-h">미국 캠프 생활</p>
-      <ul class="lg">
-        <li><svg class="ic"><use href="#i-bed-double"/></svg><div><b>2인 1실 기숙사</b>남녀 구분 · 유학생 멘토</div></li>
-        <li><svg class="ic"><use href="#i-utensils"/></svg><div><b>한식 중심 식사</b>학교 점심은 수제 도시락</div></li>
-        <li><svg class="ic"><use href="#i-smartphone"/></svg><div><b>생활 습관 훈련</b>핸드폰 관리 · 취침 시간</div></li>
-        <li><svg class="ic"><use href="#i-hand-helping"/></svg><div><b>공동체 생활</b>식사 당번 등 함께하는 생활</div></li>
-        <li><svg class="ic"><use href="#i-compass"/></svg><div><b>스몰투어</b>주 2회 안팎 · 시즌별 문화 체험</div></li>
-        <li><svg class="ic"><use href="#i-book-open"/></svg><div><b>영어책 한 권 완독</b>미국에서 끝내는 원서 읽기</div></li>
-      </ul>
-      <p class="fine camp-note">캠프 좌석은 계약금 입금 순서대로 배정되며, 시즌별 정원은 상담 때 안내해 드립니다.</p>
-    </div>
+    <p class="lead">인투유학 캠프는 <b>학습과 생활 훈련</b>입니다. 공부는 물론 생활 습관과 인성까지 함께 관리합니다.</p>
+    <ol class="adv">
+      <li><i>01</i><div><b>현지 사립학교 정규 수업</b><span>미국 스쿨링 캠프는 텍사스 사립학교의 정규 수업과 방과후 활동에 직접 참여합니다.</span></div></li>
+      <li><i>02</i><div><b>영어를 쓸 수밖에 없는 환경</b><span>현지 학생들과 함께 생활하고, 필리핀 캠프는 하루 6시간 원어민 수업과 24시간 English Policy로 운영합니다.</span></div></li>
+      <li><i>03</i><div><b>스스로 하는 생활 습관</b><span>핸드폰 관리, 정해진 취침 시간, 식사 당번 같은 공동체 생활로 자기 관리 습관을 기릅니다.</span></div></li>
+      <li><i>04</i><div><b>영어책 한 권 완독</b><span>미국 캠프 기간에 영어책 한 권을 끝까지 읽고 돌아옵니다.</span></div></li>
+      <li><i>05</i><div><b>배움이 있는 문화 체험</b><span>주 2회 안팎의 스몰투어와 시즌별 문화 체험(여름·겨울 LA 탐방, 가을 NBA·풋볼 경기 관람 등)을 함께합니다.</span></div></li>
+    </ol>
+    <p class="fine camp-note">미국 캠프는 만 5세부터 참가할 수 있고, 초등 4학년까지는 부모 동반이 필요합니다. 캠프 종류와 시즌별 일정은 상담 때 안내해 드리며, 좌석은 계약금 입금 순서대로 배정됩니다.</p>
   </div></section>
 
   <!-- 유학 -->
@@ -411,9 +396,9 @@ h2 em{font-style:normal;color:var(--accent)}
       <article class="pg"><header><b>미국 대학 유학</b><em>블린 칼리지 → 텍사스 A&amp;M</em></header>
         <p class="meta">블린 입학 TOEFL iBT 61 이상 · A&amp;M 편입 목표 시 80 이상</p>
         <p>2년제 블린 칼리지에서 시작해 텍사스 A&amp;M 편입을 준비합니다.</p></article>
-      <article class="pg"><header><b>말레이시아 유학</b><em>INTI · HELP 대학</em></header>
-        <p class="meta">한국 고교 졸업(검정고시 포함)</p>
-        <p>영국·호주 대학 편입, 또는 말레이시아에서 영국·호주 학위 취득(트위닝)</p></article>
+      <article class="pg"><header><b>말레이시아 유학</b><em>선웨이 · 테일러스 대학교</em></header>
+        <p class="meta">말레이시아 사립대학</p>
+        <p>학교별 과정과 입학 조건은 상담 때 안내해 드립니다.</p></article>
     </div>
     <div class="road">
       <p class="sec-h">텍사스 입시 로드맵</p>
