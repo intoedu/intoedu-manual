@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>INTO Global Education Leaflet</title>
+<!--
+  인투유학 공식 3단 리플렛 — 영어판 (A4 가로 3단 말아접기)
+  - 한국어판(leaflet.html)과 같은 판형·디자인(leaflet.css). 내용을 고칠 때는 두 판을 함께 맞춘다.
+  - 완성(재단) 297 × 210 mm / 작업(재단 여유 3mm 포함) 303 × 216 mm
+  - 1쪽 = 바깥면 [접어 넣는 날개 97 | 뒷표지 100 | 앞표지 100]
+  - 2쪽 = 안쪽면 [소개 100 | 캠프 100 | 유학 97]
+  - 빌드: node tools/build_leaflet.js  (leaflet/ 폴더에 PDF·미리보기 PNG 생성)
+  - 금액·날짜·정원은 시즌마다 바뀌므로 넣지 않는다 (01 매뉴얼 3장, 11 매뉴얼 4장 기준).
+-->
+<link rel="stylesheet" href="leaflet.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/> <path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/> <circle cx="9" cy="7" r="4"/> <path d="M22 21v-2a4 4 0 0 0-3-3.87"/> <path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="i-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/> <path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-heart-handshake" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/> <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/> <path d="m18 15-2-2"/> <path d="m15 18-2-2"/></symbol>
+<symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/> <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/> <circle cx="18" cy="5" r="3"/></symbol>
+<symbol id="i-bed-double" viewBox="0 0 24 24"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/> <path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/> <path d="M12 4v6"/> <path d="M2 18h20"/></symbol>
+<symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/> <path d="M7 2v20"/> <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></symbol>
+<symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/> <path d="M12 18h.01"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/> <circle cx="12" cy="12" r="10"/></symbol>
+<symbol id="i-book-open" viewBox="0 0 24 24"><path d="M12 7v14"/> <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+<symbol id="i-hand-helping" viewBox="0 0 24 24"><path d="M11 12h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 14"/> <path d="m7 18 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/> <path d="m2 13 6 6"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+<symbol id="i-message-circle" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/> <path d="M2 12h20"/></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+<symbol id="i-file-check" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/> <path d="M14 2v4a2 2 0 0 0 2 2h4"/> <path d="m9 15 2 2 4-4"/></symbol>
+<symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/> <path d="M22 10v6"/> <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+<symbol id="i-school" viewBox="0 0 24 24"><path d="M14 22v-4a2 2 0 1 0-4 0v4"/> <path d="m18 10 3.447 1.724a1 1 0 0 1 .553.894V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7.382a1 1 0 0 1 .553-.894L6 10"/> <path d="M18 5v17"/> <path d="m4 6 7.106-3.553a2 2 0 0 1 1.788 0L20 6"/> <path d="M6 5v17"/> <circle cx="12" cy="9" r="2"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/> <circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/> <path d="m12 5 7 7-7 7"/></symbol>
+</defs></svg>
+
+<!-- ════════════ Page 1 · Outside ════════════ -->
+<div class="sheet outside">
+
+  <!-- Flap (seen on the right when the cover is opened) -->
+  <section class="panel flap"><div class="in">
+    <p class="eyebrow">WHY INTO</p>
+    <h2>What Makes<br>INTO Different</h2>
+    <p class="lead">Every INTO program is <b>managed</b> on site, so students can focus on their studies and daily life abroad.</p>
+    <ul class="why">
+      <li><span class="ico"><svg class="ic"><use href="#i-shield-check"/></svg></span>
+        <div><b>Official Local Guardian</b><span>A U.S. citizen who has lived in the area for 30 years serves as INTO’s official guardian.</span></div></li>
+      <li><span class="ico"><svg class="ic"><use href="#i-house"/></svg></span>
+        <div><b>Managed Dormitory Life</b><span>Students share twin rooms, separated by gender, with international-student mentors looking after daily life.</span></div></li>
+      <li><span class="ico"><svg class="ic"><use href="#i-badge-check"/></svg></span>
+        <div><b>Accredited School</b><span>Our early study-abroad school in Texas is an accredited private school (AdvancED, now Cognia).</span></div></li>
+      <li><span class="ico"><svg class="ic"><use href="#i-heart-handshake"/></svg></span>
+        <div><b>Parents Included</b><span>Parent-accompanied camps offer a Parent Academy (U.S. admissions, visas, student life, scholarships) and 1:1 career counseling.</span></div></li>
+      <li><span class="ico"><svg class="ic"><use href="#i-route"/></svg></span>
+        <div><b>From Camp to University</b><span>One team plans the whole path: camp experience, preparation, boarding school and university.</span></div></li>
+    </ul>
+    <p class="flap-foot">Our <b>local teams</b> in the U.S., the Philippines, Malaysia and Chiang Mai, Thailand welcome students and parents in person.</p>
+  </div></section>
+
+  <!-- Back cover -->
+  <section class="panel back"><div class="in">
+    <p class="eyebrow">HOW TO JOIN</p>
+    <h2>Consultation &amp; Enrollment</h2>
+    <ol class="steps">
+      <li><i>01</i><div><b>Inquiry · Consultation Request</b><span>Call, message us on KakaoTalk, or scan the QR code below.</span></div></li>
+      <li><i>02</i><div><b>1:1 Consultation</b><span>We match a program to your child’s grade, goals and timing.</span></div></li>
+      <li><i>03</i><div><b>Application Form</b><span>Apply online after the consultation.</span></div></li>
+      <li><i>04</i><div><b>Deposit · Seat Assignment</b><span>Seats go in order of confirmed deposits; closes when full.</span></div></li>
+      <li><i>05</i><div><b>Balance · Enrollment Confirmed</b><span>Enrollment is confirmed once the full fee is paid.</span></div></li>
+      <li><i>06</i><div><b>Departure Preparation</b><span>We guide you on documents and what to prepare.</span></div></li>
+    </ol>
+    <p class="note"><b>Early study abroad</b>: consultation → documents → Prep → application &amp; visa → final check &amp; departure.</p>
+    <div class="help">
+      <p class="sec-h">We Also Help With</p>
+      <ul>
+        <li><svg class="ic"><use href="#i-plane"/></svg><span>Flights · ESTA (U.S. travel authorization) · travel insurance</span></li>
+        <li><svg class="ic"><use href="#i-file-check"/></svg><span>Student visa (F-1) · I-20 support <small>(managed boarding program)</small></span></li>
+        <li><svg class="ic"><use href="#i-graduation-cap"/></svg><span>Parent information sessions <small>— ask us for dates</small></span></li>
+      </ul>
+    </div>
+    <div class="contact">
+      <div class="ct-l">
+        <p class="ct-h">CONTACT</p>
+        <p class="ct-tel">+82-31-674-0316</p>
+        <dl class="ct-dl">
+          <dt>KakaoTalk</dt><dd>ID historymaker911</dd>
+          <dt>Email</dt><dd>intoedu0309@gmail.com</dd>
+          <dt>Website</dt><dd>intoabroad.com</dd>
+        </dl>
+      </div>
+      <div class="ct-qr"><div class="qbox"><img src="img/qr-apply.svg" alt="Consultation request QR"></div><span><b>Consultation</b>Scan with your camera</span></div>
+    </div>
+    <div class="back-foot">
+      <div class="bf-l">
+        <p class="fine">· Fees and schedules are confirmed at consultation.<br>· Schedules may change due to local conditions.</p>
+        <div class="back-sign"><img src="img/logo-light.svg" alt="INTO Global Education"></div>
+      </div>
+      <div class="web-qr"><div class="qbox"><img src="img/qr-intoabroad.svg" alt="intoabroad.com QR"></div><span>Website</span></div>
+    </div>
+  </div></section>
+
+  <!-- Front cover -->
+  <section class="panel cover">
+    <div class="in">
+      <img class="cv-logo" src="img/logo-dark.svg" alt="INTO Global Education">
+      <p class="cv-en">INTO GLOBAL EDUCATION</p>
+      <div class="cv-mid">
+        <p class="cv-eyebrow">MORE THAN STUDY ABROAD</p>
+        <h1 class="cv-title">From Camp<br><em>to University</em></h1>
+        <p class="cv-sub">U.S. · Philippines · Malaysia · Thailand<br>Study abroad, managed by our local teams</p>
+        <p class="cv-quote">Explore your global future</p>
+      </div>
+    </div>
+    <div class="cv-map">
+      <img src="img/map-network.svg" alt="">
+      <span class="lb ctr" style="left:24%;top:4%">KOREA</span>
+      <span class="lb" style="left:84%;top:52%">TEXAS<small>USA</small></span>
+      <span class="lb" style="left:24.6%;top:58.6%">PHILIPPINES</span>
+      <span class="lb" style="left:15.2%;top:76%">MALAYSIA</span>
+      <span class="lb" style="left:3.4%;top:31%">CHIANG MAI<small>THAILAND</small></span>
+    </div>
+    <div class="cv-foot">
+      <ul class="cv-tags"><li>English Camps</li><li>Schooling Camps</li><li>Study Abroad</li><li>University</li></ul>
+      <p class="cv-call">Contact <b>+82-31-674-0316</b></p>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════ Page 2 · Inside ════════════ -->
+<div class="sheet inside">
+
+  <!-- About -->
+  <section class="panel about"><div class="in">
+    <p class="eyebrow">ABOUT</p>
+    <h2>About<br><em>INTO Global Education</em></h2>
+    <p class="lead">INTO Global Education (인투유학) connects local study centers in the U.S., the Philippines and Malaysia with partner academies in Korea, and runs <b>managed</b> camps and study-abroad programs for students.</p>
+    <div class="netw">
+      <p class="sec-h">Local Network</p>
+      <ul class="net">
+        <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
+          <div><b>Texas, USA</b><span>Schooling camps · Parent-accompanied camps · Vision Trip · Early study abroad · University</span></div></li>
+        <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
+          <div><b>Philippines</b><span>Intensive English camp · Phil-America Zone Prep (U.S. study preparation)</span></div></li>
+        <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
+          <div><b>Malaysia</b><span>Intensive English camp · University (Sunway&nbsp;·&nbsp;Taylor’s)</span></div></li>
+        <li><span class="pin"><svg class="ic"><use href="#i-map-pin"/></svg></span>
+          <div><b>Chiang Mai, Thailand</b><span>Family English camp (with parents)</span></div></li>
+      </ul>
+    </div>
+    <div class="texas">
+      <p class="sec-h">Why Texas</p>
+      <ul class="tx">
+        <li><svg class="ic"><use href="#i-plane"/></svg><div><b>Easy to Reach</b>South-central U.S.</div></li>
+        <li><svg class="ic"><use href="#i-globe"/></svg><div><b>Strong Economy</b></div></li>
+        <li><svg class="ic"><use href="#i-compass"/></svg><div><b>Engineering · Science · Tech</b>Strong local industries</div></li>
+        <li><svg class="ic"><use href="#i-school"/></svg><div><b>College Town</b>College Station, home of Texas A&amp;M</div></li>
+      </ul>
+    </div>
+  </div></section>
+
+  <!-- Camp -->
+  <section class="panel camp"><div class="in">
+    <p class="eyebrow">CAMP</p>
+    <h2>INTO Camps:<br><em>Study and Life Training</em></h2>
+    <p class="lead">INTO camps are about <b>learning and life training</b>. Beyond academics, we also look after daily habits and character.</p>
+    <ol class="adv">
+      <li><i>01</i><div><b>Real Classes at a U.S. Private School</b><span>Schooling camp students join regular classes and after-school activities at a private school in Texas.</span></div></li>
+      <li><i>02</i><div><b>An Environment Where English Is a Must</b><span>Students live alongside local students. In the Philippines, camps run six hours of native-speaker classes a day under a 24-hour English policy.</span></div></li>
+      <li><i>03</i><div><b>Self-Management Habits</b><span>Phone management, set bedtimes and shared meal duties build self-management through community life.</span></div></li>
+      <li><i>04</i><div><b>Finish One English Book</b><span>Students read one English book from cover to cover during the U.S. camp.</span></div></li>
+      <li><i>05</i><div><b>Learning Through Culture</b><span>Small tours about twice a week, plus seasonal trips (LA in summer and winter, NBA and football games in fall).</span></div></li>
+    </ol>
+    <p class="fine camp-note">U.S. camps accept children from age 5; parents must accompany children in Grade 4 or below. Camp options and seasonal schedules are provided at consultation, and seats are assigned in the order deposits are confirmed.</p>
+  </div></section>
+
+  <!-- Study abroad -->
+  <section class="panel study"><div class="in">
+    <p class="eyebrow">STUDY ABROAD</p>
+    <h2>Study Abroad<br><em>Pathways</em></h2>
+    <div class="progs">
+      <article class="pg hero"><header><b>Early Study Abroad · Boarding</b><em>Bryan, Texas</em></header>
+        <p class="meta">Cornerstone · accredited private school · up to 6 international students per grade</p>
+        <p>Managed boarding: twin rooms · school rides · 2 hrs of daily after-school study · academic advisor · SAT/GPA management · bimonthly reports · campus tours each semester</p>
+        <p class="alum">Alumni colleges<sup>*</sup> <b>Yale · NYU · UT-Austin · Texas&nbsp;A&amp;M</b>&nbsp;and&nbsp;more</p></article>
+      <article class="pg"><header><b>Phil-America Zone Prep</b><em>Philippines · 6 mo</em></header>
+        <p class="meta">HS graduates or equivalent (Korean or U.S. GED) · Jan&nbsp;/&nbsp;Jul&nbsp;intake</p>
+        <p>Intensive TOEFL, academic English and admissions paperwork, plus volunteer work twice a month for a leadership portfolio.</p></article>
+      <article class="pg"><header><b>U.S. University Pathway</b><em>Blinn College → Texas A&amp;M</em></header>
+        <p class="meta">Blinn: TOEFL iBT 61+ · 80+ to aim for an A&amp;M transfer</p>
+        <p>Start at Blinn, a two-year college, and prepare to transfer to Texas A&amp;M.</p></article>
+      <article class="pg"><header><b>Study in Malaysia</b><em>Sunway · Taylor’s</em></header>
+        <p class="meta">Private universities in Malaysia</p>
+        <p>Programs and entry requirements are explained at consultation.</p></article>
+    </div>
+    <div class="road">
+      <p class="sec-h">Texas Admissions Roadmap</p>
+      <div class="rr"><span>Cornerstone HS 3 yrs</span><i>→</i><span class="end">Texas A&amp;M 4 yrs</span></div>
+      <div class="rr"><span>Cornerstone HS 3 yrs</span><i>→</i><span>Blinn 2 yrs</span><i>→</i><span class="end">A&amp;M 2 yrs</span></div>
+      <div class="rr"><span>Korean HS/GED</span><i>→</i><span>Prep 6 mo</span><i>→</i><span>Blinn 2 yrs</span><i>→</i><span class="end">A&amp;M 2 yrs</span></div>
+      <p class="fine">* Based on school-provided information. Individual results vary with grades, activities and application strategy; admission and transfer are subject to each school’s review.</p>
+    </div>
+  </div></section>
+</div>
+</body>
+</html>

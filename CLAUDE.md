@@ -9,5 +9,5 @@
 - 비밀번호 잠금: `middleware.js`가 서버에서 모든 요청을 막는다. 비밀번호(`SITE_PASSWORD`)와 쿠키 서명키(`AUTH_SECRET`)는
   Vercel 환경변수에만 둔다. **비밀번호를 저장소에 적지 않는다.**
 - 사업(비즈니스) 트랙 자료이므로 종교적 표현을 넣지 않는다.
-- 3단 리플렛: 글은 `source/leaflet/leaflet.html`에서 고치고 `node tools/build_leaflet.js`로 `leaflet/`(인쇄용 CMYK·RGB, 사무용 A4 PDF, 미리보기 PNG)을 다시 만든다. `leaflet/` 안의 파일은 빌드 결과물이라 직접 고치지 않는다.
+- 3단 리플렛: 한국어 최종판(`source/leaflet/leaflet.html`)과 영어판(`source/leaflet/leaflet-en.html`)이 공통 디자인(`source/leaflet/leaflet.css`)을 쓴다. 내용을 고치면 두 판을 함께 맞추고, `node tools/build_leaflet.js`로 `leaflet/`(판마다 인쇄용 CMYK·RGB, 사무용 A4 PDF, 미리보기 PNG)을 다시 만든다. `leaflet/` 안의 파일은 빌드 결과물이라 직접 고치지 않는다.
   금액·날짜·시즌 정원은 넣지 않고, 보장·최상급·근거 없는 비교 표현은 쓰지 않는다(07 매뉴얼 홍보 표현 규칙). 진학 실적에는 "학교 안내 기준" 단서를 붙인다.
